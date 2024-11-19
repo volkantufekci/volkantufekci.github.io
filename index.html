@@ -1,1 +1,1568 @@
-hede hodo
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<script>
+
+    const data =
+        {
+            "nodes": [
+                {
+                    "id": "build"
+                },
+                {
+                    "id": "portfolio-learner-success"
+                },
+                {
+                    "id": "federation-reviewers"
+                },
+                {
+                    "id": "ub-cohort-learning"
+                },
+                {
+                    "id": "frontend-platform"
+                },
+                {
+                    "id": "instructor-payouts"
+                },
+                {
+                    "id": "globalization"
+                },
+                {
+                    "id": "trust-and-identity"
+                },
+                {
+                    "id": "monolith-web-frontend"
+                },
+                {
+                    "id": "monitoring-and-observability"
+                },
+                {
+                    "id": "api-platform"
+                },
+                {
+                    "id": "design-system"
+                },
+                {
+                    "id": "practice-and-validation"
+                },
+                {
+                    "id": "badging"
+                },
+                {
+                    "id": "subscriptions-platform"
+                },
+                {
+                    "id": "team-communication"
+                },
+                {
+                    "id": "team-eventing"
+                },
+                {
+                    "id": "checkout-team"
+                },
+                {
+                    "id": "sre"
+                },
+                {
+                    "id": "data-privacy"
+                },
+                {
+                    "id": "media-team"
+                },
+                {
+                    "id": "course"
+                },
+                {
+                    "id": "ub-org-management"
+                },
+                {
+                    "id": "ub-learning-in-teams"
+                },
+                {
+                    "id": "structured-data"
+                },
+                {
+                    "id": "ub-accounts-and-licenses"
+                },
+                {
+                    "id": "channels-and-attribution"
+                },
+                {
+                    "id": "risks-and-refunds"
+                },
+                {
+                    "id": "org-success"
+                },
+                {
+                    "id": "ub-feature-flags-reviewers"
+                },
+                {
+                    "id": "lightning"
+                },
+                {
+                    "id": "ufb-ecosystems-integrations"
+                },
+                {
+                    "id": "quality-engineering"
+                },
+                {
+                    "id": "platform"
+                },
+                {
+                    "id": "marketing-tech"
+                },
+                {
+                    "id": "money-out"
+                },
+                {
+                    "id": "partnership"
+                },
+                {
+                    "id": "payments"
+                },
+                {
+                    "id": "reporting-foundations"
+                },
+                {
+                    "id": "machine-learning-services"
+                },
+                {
+                    "id": "pricing"
+                },
+                {
+                    "id": "instructor-i3"
+                },
+                {
+                    "id": "portfolio-conversion"
+                },
+                {
+                    "id": "catalog-search"
+                },
+                {
+                    "id": "team-experimentation"
+                },
+                {
+                    "id": "sequenced-learning"
+                },
+                {
+                    "id": "admin-and-quality-tools"
+                },
+                {
+                    "id": "ub-core-services"
+                },
+                {
+                    "id": "enterprise-payments"
+                },
+                {
+                    "id": "dsi"
+                },
+                {
+                    "id": "ub-learning-insights"
+                },
+                {
+                    "id": "instructor"
+                },
+                {
+                    "id": "core-services"
+                }
+            ],
+            "links": [
+                {
+                    "source": "portfolio-conversion",
+                    "target": "portfolio-learner-success",
+                    "value": 3
+                },
+                {
+                    "source": "org-success",
+                    "target": "reporting-foundations",
+                    "value": 4
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "org-success",
+                    "value": 16
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "instructor-payouts",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "enterprise-payments",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "checkout-team",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "monolith-web-frontend",
+                    "value": 7
+                },
+                {
+                    "source": "design-system",
+                    "target": "portfolio-conversion",
+                    "value": 8
+                },
+                {
+                    "source": "team-eventing",
+                    "target": "pricing",
+                    "value": 1
+                },
+                {
+                    "source": "team-eventing",
+                    "target": "portfolio-conversion",
+                    "value": 3
+                },
+                {
+                    "source": "instructor",
+                    "target": "subscriptions-platform",
+                    "value": 1
+                },
+                {
+                    "source": "badging",
+                    "target": "monolith-web-frontend",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "org-success",
+                    "value": 55
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "instructor",
+                    "value": 3
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "monolith-web-frontend",
+                    "value": 2
+                },
+                {
+                    "source": "build",
+                    "target": "platform",
+                    "value": 6
+                },
+                {
+                    "source": "sre",
+                    "target": "platform",
+                    "value": 5
+                },
+                {
+                    "source": "org-success",
+                    "target": "ub-org-management",
+                    "value": 4
+                },
+                {
+                    "source": "core-services",
+                    "target": "sequenced-learning",
+                    "value": 3
+                },
+                {
+                    "source": "design-system",
+                    "target": "org-success",
+                    "value": 15
+                },
+                {
+                    "source": "media-team",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "media-team",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "catalog-search",
+                    "target": "portfolio-conversion",
+                    "value": 1
+                },
+                {
+                    "source": "catalog-search",
+                    "target": "portfolio-learner-success",
+                    "value": 2
+                },
+                {
+                    "source": "core-services",
+                    "target": "platform",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "trust-and-identity",
+                    "value": 3
+                },
+                {
+                    "source": "org-success",
+                    "target": "data-privacy",
+                    "value": 5
+                },
+                {
+                    "source": "instructor",
+                    "target": "org-success",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "build",
+                    "value": 5
+                },
+                {
+                    "source": "catalog-search",
+                    "target": "monolith-web-frontend",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "team-experimentation",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "frontend-platform",
+                    "value": 4
+                },
+                {
+                    "source": "org-success",
+                    "target": "portfolio-learner-success",
+                    "value": 5
+                },
+                {
+                    "source": "org-success",
+                    "target": "core-services",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "instructor",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "globalization",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "instructor-i3",
+                    "value": 1
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "enterprise-payments",
+                    "value": 1
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "team-communication",
+                    "value": 2
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "admin-and-quality-tools",
+                    "value": 1
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "checkout-team",
+                    "value": 1
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "instructor-payouts",
+                    "value": 1
+                },
+                {
+                    "source": "course",
+                    "target": "portfolio-learner-success",
+                    "value": 1
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "monolith-web-frontend",
+                    "value": 4
+                },
+                {
+                    "source": "federation-reviewers",
+                    "target": "trust-and-identity",
+                    "value": 2
+                },
+                {
+                    "source": "federation-reviewers",
+                    "target": "portfolio-learner-success",
+                    "value": 3
+                },
+                {
+                    "source": "federation-reviewers",
+                    "target": "data-privacy",
+                    "value": 2
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "data-privacy",
+                    "value": 3
+                },
+                {
+                    "source": "sequenced-learning",
+                    "target": "portfolio-learner-success",
+                    "value": 5
+                },
+                {
+                    "source": "sequenced-learning",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "sequenced-learning",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "platform",
+                    "value": 4
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "partnership",
+                    "value": 1
+                },
+                {
+                    "source": "payments",
+                    "target": "build",
+                    "value": 1
+                },
+                {
+                    "source": "admin-and-quality-tools",
+                    "target": "org-success",
+                    "value": 2
+                },
+                {
+                    "source": "core-services",
+                    "target": "catalog-search",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "subscriptions-platform",
+                    "value": 1
+                },
+                {
+                    "source": "risks-and-refunds",
+                    "target": "admin-and-quality-tools",
+                    "value": 4
+                },
+                {
+                    "source": "risks-and-refunds",
+                    "target": "data-privacy",
+                    "value": 3
+                },
+                {
+                    "source": "ub-org-management",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "ub-org-management",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "ub-org-management",
+                    "target": "dsi",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "portfolio-learner-success",
+                    "value": 1
+                },
+                {
+                    "source": "quality-engineering",
+                    "target": "trust-and-identity",
+                    "value": 2
+                },
+                {
+                    "source": "quality-engineering",
+                    "target": "org-success",
+                    "value": 1
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "machine-learning-services",
+                    "value": 1
+                },
+                {
+                    "source": "payments",
+                    "target": "org-success",
+                    "value": 3
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "org-success",
+                    "value": 1
+                },
+                {
+                    "source": "team-communication",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "team-communication",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "team-communication",
+                    "value": 3
+                },
+                {
+                    "source": "sequenced-learning",
+                    "target": "core-services",
+                    "value": 1
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "portfolio-conversion",
+                    "value": 5
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "marketing-tech",
+                    "value": 1
+                },
+                {
+                    "source": "team-experimentation",
+                    "target": "badging",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "trust-and-identity",
+                    "value": 3
+                },
+                {
+                    "source": "org-success",
+                    "target": "platform",
+                    "value": 4
+                },
+                {
+                    "source": "team-eventing",
+                    "target": "catalog-search",
+                    "value": 1
+                },
+                {
+                    "source": "team-eventing",
+                    "target": "instructor-payouts",
+                    "value": 2
+                },
+                {
+                    "source": "instructor",
+                    "target": "monolith-web-frontend",
+                    "value": 1
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "org-success",
+                    "value": 3
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "catalog-search",
+                    "value": 2
+                },
+                {
+                    "source": "globalization",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "globalization",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "ub-feature-flags-reviewers",
+                    "value": 3
+                },
+                {
+                    "source": "team-experimentation",
+                    "target": "core-services",
+                    "value": 1
+                },
+                {
+                    "source": "team-eventing",
+                    "target": "marketing-tech",
+                    "value": 1
+                },
+                {
+                    "source": "team-experimentation",
+                    "target": "portfolio-conversion",
+                    "value": 3
+                },
+                {
+                    "source": "team-eventing",
+                    "target": "instructor-i3",
+                    "value": 1
+                },
+                {
+                    "source": "money-out",
+                    "target": "instructor-i3",
+                    "value": 1
+                },
+                {
+                    "source": "ub-core-services",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "payments",
+                    "target": "instructor-i3",
+                    "value": 1
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "instructor-payouts",
+                    "value": 4
+                },
+                {
+                    "source": "media-team",
+                    "target": "frontend-platform",
+                    "value": 1
+                },
+                {
+                    "source": "admin-and-quality-tools",
+                    "target": "core-services",
+                    "value": 1
+                },
+                {
+                    "source": "admin-and-quality-tools",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "admin-and-quality-tools",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "enterprise-payments",
+                    "target": "checkout-team",
+                    "value": 6
+                },
+                {
+                    "source": "subscriptions-platform",
+                    "target": "team-experimentation",
+                    "value": 1
+                },
+                {
+                    "source": "subscriptions-platform",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "subscriptions-platform",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "subscriptions-platform",
+                    "target": "team-eventing",
+                    "value": 1
+                },
+                {
+                    "source": "subscriptions-platform",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "lightning",
+                    "target": "monolith-web-frontend",
+                    "value": 1
+                },
+                {
+                    "source": "lightning",
+                    "target": "sequenced-learning",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "admin-and-quality-tools",
+                    "value": 1
+                },
+                {
+                    "source": "team-experimentation",
+                    "target": "portfolio-learner-success",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "ub-core-services",
+                    "value": 1
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "federation-reviewers",
+                    "value": 1
+                },
+                {
+                    "source": "federation-reviewers",
+                    "target": "build",
+                    "value": 4
+                },
+                {
+                    "source": "federation-reviewers",
+                    "target": "platform",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "badging",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "sre",
+                    "value": 2
+                },
+                {
+                    "source": "risks-and-refunds",
+                    "target": "quality-engineering",
+                    "value": 1
+                },
+                {
+                    "source": "money-out",
+                    "target": "pricing",
+                    "value": 2
+                },
+                {
+                    "source": "money-out",
+                    "target": "sre",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "monolith-web-frontend",
+                    "value": 3
+                },
+                {
+                    "source": "design-system",
+                    "target": "portfolio-learner-success",
+                    "value": 5
+                },
+                {
+                    "source": "design-system",
+                    "target": "instructor",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "ub-learning-insights",
+                    "value": 5
+                },
+                {
+                    "source": "design-system",
+                    "target": "sequenced-learning",
+                    "value": 2
+                },
+                {
+                    "source": "federation-reviewers",
+                    "target": "sre",
+                    "value": 2
+                },
+                {
+                    "source": "federation-reviewers",
+                    "target": "team-eventing",
+                    "value": 1
+                },
+                {
+                    "source": "money-out",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "ub-core-services",
+                    "target": "ub-learning-insights",
+                    "value": 1
+                },
+                {
+                    "source": "payments",
+                    "target": "admin-and-quality-tools",
+                    "value": 1
+                },
+                {
+                    "source": "course",
+                    "target": "portfolio-conversion",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "ufb-ecosystems-integrations",
+                    "value": 1
+                },
+                {
+                    "source": "instructor",
+                    "target": "instructor-i3",
+                    "value": 1
+                },
+                {
+                    "source": "globalization",
+                    "target": "dsi",
+                    "value": 1
+                },
+                {
+                    "source": "globalization",
+                    "target": "portfolio-conversion",
+                    "value": 6
+                },
+                {
+                    "source": "machine-learning-services",
+                    "target": "catalog-search",
+                    "value": 3
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "platform",
+                    "value": 2
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "admin-and-quality-tools",
+                    "value": 2
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "ub-accounts-and-licenses",
+                    "value": 3
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "portfolio-conversion",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "subscriptions-platform",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "sequenced-learning",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "ub-learning-in-teams",
+                    "value": 3
+                },
+                {
+                    "source": "instructor",
+                    "target": "frontend-platform",
+                    "value": 1
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "checkout-team",
+                    "value": 1
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "instructor",
+                    "value": 2
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "course",
+                    "value": 3
+                },
+                {
+                    "source": "enterprise-payments",
+                    "target": "platform",
+                    "value": 2
+                },
+                {
+                    "source": "enterprise-payments",
+                    "target": "trust-and-identity",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "ub-learning-insights",
+                    "value": 13
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "dsi",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "platform",
+                    "value": 2
+                },
+                {
+                    "source": "globalization",
+                    "target": "portfolio-learner-success",
+                    "value": 5
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "sequenced-learning",
+                    "value": 1
+                },
+                {
+                    "source": "media-team",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "payments",
+                    "target": "team-communication",
+                    "value": 1
+                },
+                {
+                    "source": "instructor",
+                    "target": "portfolio-learner-success",
+                    "value": 5
+                },
+                {
+                    "source": "core-services",
+                    "target": "portfolio-learner-success",
+                    "value": 1
+                },
+                {
+                    "source": "sequenced-learning",
+                    "target": "portfolio-conversion",
+                    "value": 2
+                },
+                {
+                    "source": "api-platform",
+                    "target": "build",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "ub-cohort-learning",
+                    "value": 1
+                },
+                {
+                    "source": "ub-org-management",
+                    "target": "subscriptions-platform",
+                    "value": 1
+                },
+                {
+                    "source": "portfolio-conversion",
+                    "target": "monolith-web-frontend",
+                    "value": 3
+                },
+                {
+                    "source": "portfolio-conversion",
+                    "target": "build",
+                    "value": 2
+                },
+                {
+                    "source": "org-success",
+                    "target": "instructor-i3",
+                    "value": 2
+                },
+                {
+                    "source": "pricing",
+                    "target": "payments",
+                    "value": 3
+                },
+                {
+                    "source": "portfolio-learner-success",
+                    "target": "build",
+                    "value": 1
+                },
+                {
+                    "source": "practice-and-validation",
+                    "target": "portfolio-learner-success",
+                    "value": 1
+                },
+                {
+                    "source": "quality-engineering",
+                    "target": "monolith-web-frontend",
+                    "value": 3
+                },
+                {
+                    "source": "org-success",
+                    "target": "ub-accounts-and-licenses",
+                    "value": 5
+                },
+                {
+                    "source": "portfolio-conversion",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "monitoring-and-observability",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "instructor",
+                    "target": "api-platform",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "ub-core-services",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "api-platform",
+                    "value": 1
+                },
+                {
+                    "source": "enterprise-payments",
+                    "target": "build",
+                    "value": 1
+                },
+                {
+                    "source": "machine-learning-services",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "machine-learning-services",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "dsi",
+                    "target": "sre",
+                    "value": 1
+                },
+                {
+                    "source": "machine-learning-services",
+                    "target": "portfolio-conversion",
+                    "value": 3
+                },
+                {
+                    "source": "build",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "globalization",
+                    "target": "machine-learning-services",
+                    "value": 2
+                },
+                {
+                    "source": "api-platform",
+                    "target": "org-success",
+                    "value": 1
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "subscriptions-platform",
+                    "value": 1
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "monolith-web-frontend",
+                    "value": 2
+                },
+                {
+                    "source": "team-communication",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "admin-and-quality-tools",
+                    "target": "monolith-web-frontend",
+                    "value": 2
+                },
+                {
+                    "source": "sequenced-learning",
+                    "target": "practice-and-validation",
+                    "value": 3
+                },
+                {
+                    "source": "instructor-payouts",
+                    "target": "checkout-team",
+                    "value": 2
+                },
+                {
+                    "source": "instructor-payouts",
+                    "target": "enterprise-payments",
+                    "value": 1
+                },
+                {
+                    "source": "core-services",
+                    "target": "build",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "admin-and-quality-tools",
+                    "value": 3
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "reporting-foundations",
+                    "value": 2
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "team-communication",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "api-platform",
+                    "value": 2
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "ub-learning-insights",
+                    "value": 4
+                },
+                {
+                    "source": "catalog-search",
+                    "target": "subscriptions-platform",
+                    "value": 2
+                },
+                {
+                    "source": "catalog-search",
+                    "target": "structured-data",
+                    "value": 2
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "ub-accounts-and-licenses",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "sequenced-learning",
+                    "value": 1
+                },
+                {
+                    "source": "instructor-i3",
+                    "target": "monolith-web-frontend",
+                    "value": 1
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "enterprise-payments",
+                    "value": 3
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "sre",
+                    "value": 1
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "portfolio-conversion",
+                    "value": 1
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "team-eventing",
+                    "value": 1
+                },
+                {
+                    "source": "instructor-i3",
+                    "target": "ub-learning-insights",
+                    "value": 1
+                },
+                {
+                    "source": "payments",
+                    "target": "checkout-team",
+                    "value": 1
+                },
+                {
+                    "source": "payments",
+                    "target": "enterprise-payments",
+                    "value": 1
+                },
+                {
+                    "source": "globalization",
+                    "target": "frontend-platform",
+                    "value": 4
+                },
+                {
+                    "source": "sequenced-learning",
+                    "target": "monolith-web-frontend",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "platform",
+                    "value": 2
+                },
+                {
+                    "source": "instructor-payouts",
+                    "target": "instructor",
+                    "value": 1
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "marketing-tech",
+                    "value": 3
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "channels-and-attribution",
+                    "value": 2
+                },
+                {
+                    "source": "checkout-team",
+                    "target": "pricing",
+                    "value": 1
+                },
+                {
+                    "source": "practice-and-validation",
+                    "target": "portfolio-conversion",
+                    "value": 1
+                },
+                {
+                    "source": "core-services",
+                    "target": "practice-and-validation",
+                    "value": 5
+                },
+                {
+                    "source": "instructor-payouts",
+                    "target": "team-communication",
+                    "value": 1
+                },
+                {
+                    "source": "subscriptions-platform",
+                    "target": "ub-learning-insights",
+                    "value": 2
+                },
+                {
+                    "source": "core-services",
+                    "target": "instructor",
+                    "value": 1
+                },
+                {
+                    "source": "core-services",
+                    "target": "monolith-web-frontend",
+                    "value": 1
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "dsi",
+                    "value": 1
+                },
+                {
+                    "source": "structured-data",
+                    "target": "practice-and-validation",
+                    "value": 4
+                },
+                {
+                    "source": "money-out",
+                    "target": "enterprise-payments",
+                    "value": 1
+                },
+                {
+                    "source": "money-out",
+                    "target": "build",
+                    "value": 1
+                },
+                {
+                    "source": "quality-engineering",
+                    "target": "platform",
+                    "value": 1
+                },
+                {
+                    "source": "quality-engineering",
+                    "target": "subscriptions-platform",
+                    "value": 2
+                },
+                {
+                    "source": "portfolio-conversion",
+                    "target": "checkout-team",
+                    "value": 1
+                },
+                {
+                    "source": "portfolio-conversion",
+                    "target": "enterprise-payments",
+                    "value": 1
+                },
+                {
+                    "source": "data-privacy",
+                    "target": "build",
+                    "value": 1
+                },
+                {
+                    "source": "badging",
+                    "target": "sequenced-learning",
+                    "value": 1
+                },
+                {
+                    "source": "badging",
+                    "target": "practice-and-validation",
+                    "value": 1
+                },
+                {
+                    "source": "pricing",
+                    "target": "portfolio-conversion",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "frontend-platform",
+                    "value": 4
+                },
+                {
+                    "source": "team-communication",
+                    "target": "instructor",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "build",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "subscriptions-platform",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "ub-learning-in-teams",
+                    "value": 1
+                },
+                {
+                    "source": "risks-and-refunds",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "ub-org-management",
+                    "target": "frontend-platform",
+                    "value": 2
+                },
+                {
+                    "source": "portfolio-conversion",
+                    "target": "frontend-platform",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "team-experimentation",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "practice-and-validation",
+                    "value": 1
+                },
+                {
+                    "source": "design-system",
+                    "target": "structured-data",
+                    "value": 1
+                },
+                {
+                    "source": "instructor-payouts",
+                    "target": "build",
+                    "value": 1
+                },
+                {
+                    "source": "instructor-payouts",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "instructor-payouts",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "instructor",
+                    "target": "dsi",
+                    "value": 1
+                },
+                {
+                    "source": "trust-and-identity",
+                    "target": "sequenced-learning",
+                    "value": 1
+                },
+                {
+                    "source": "lightning",
+                    "target": "frontend-platform",
+                    "value": 1
+                },
+                {
+                    "source": "lightning",
+                    "target": "portfolio-learner-success",
+                    "value": 1
+                },
+                {
+                    "source": "lightning",
+                    "target": "ub-learning-insights",
+                    "value": 1
+                },
+                {
+                    "source": "lightning",
+                    "target": "checkout-team",
+                    "value": 1
+                },
+                {
+                    "source": "core-services",
+                    "target": "trust-and-identity",
+                    "value": 1
+                },
+                {
+                    "source": "core-services",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "instructor",
+                    "target": "data-privacy",
+                    "value": 1
+                },
+                {
+                    "source": "instructor",
+                    "target": "instructor-payouts",
+                    "value": 2
+                },
+                {
+                    "source": "instructor",
+                    "target": "catalog-search",
+                    "value": 1
+                },
+                {
+                    "source": "org-success",
+                    "target": "portfolio-conversion",
+                    "value": 1
+                },
+                {
+                    "source": "portfolio-conversion",
+                    "target": "catalog-search",
+                    "value": 1
+                }
+            ]
+        };
+
+    // set the dimensions and margins of the graph
+    const margin = {top: 30, right: 30, bottom: 150, left: 90},
+        width = 1800 - margin.left - margin.right,
+        height = 1000 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    const svg = d3.select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Read data
+    // d3.json("http://localhost:8080/2/output.json").then(function (data) {
+        // List of node names
+        data.nodes.forEach(function (node) {
+            console.log(node.id);
+        });
+        const allNodes = data.nodes.map(d => d.id)
+
+        // A linear scale to position the nodes on the X axis
+        const x = d3.scalePoint()
+            .range([0, width])
+            .domain(allNodes)
+
+        // Add the circle for the nodes
+        const nodes = svg
+            .selectAll("mynodes")
+            .data(data.nodes)
+            .join("circle")
+            .attr("cx", d => x(d.id))
+            .attr("cy", height - 30)
+            .attr("r", 8)
+            .style("fill", "#69b3a2")
+
+        // And give them a label
+        const labels = svg
+            .selectAll("mylabels")
+            .data(data.nodes)
+            .enter()
+            .append("text")
+            .attr("x", 0)
+            .attr("y", 0)
+            .text(function (d) {
+                return (d.id)
+            })
+            .style("text-anchor", "end")
+            .attr("transform", function (d) {
+                return ("translate(" + (x(d.id)) + "," + (height - 15) + ")rotate(-45)")
+            })
+            .style("font-size", 12)
+
+        // Add the links
+        const links = svg
+            .selectAll('mylinks')
+            .data(data.links)
+            .join('path')
+            .attr('d', d => {
+                start = x(d.source)    // X position of start node on the X axis
+                end = x(d.target)      // X position of end node
+                return ['M', start, height - 30,    // the arc starts at the coordinate x=start, y=height-30 (where the starting node is)
+                    'A',                            // This means we're gonna build an elliptical arc
+                    (start - end) / 2, ',',    // Next 2 lines are the coordinates of the inflexion point. Height of this point is proportional with start - end distance
+                    (start - end) / 2, 0, 0, ',',
+                    start < end ? 1 : 0, end, ',', height - 30] // We always want the arc on top. So if end is before start, putting 0 here turn the arc upside down.
+                    .join(' ');
+            })
+            .style("fill", "none")
+            .attr("stroke", "black")
+            .attr("stroke-width", d => d.value)
+
+        // Add the highlighting functionality
+        nodes
+            .on('mouseover', function (event, d) {
+                // Highlight the nodes: every node is green except of him
+                nodes.style('fill', "#B8B8B8")
+                d3.select(this).style('fill', '#e50bf4')
+                // Highlight the connections
+                links
+                    // .style('stroke', a=>  a.source === d.id || a.target === d.id ? '#69b3b2' : '#b8b8b8')
+                    // .style('stroke-width', a=>a.source === d.id || a.target === d.id ? d.value : 1)
+                    .style('stroke', a => a.source === d.id ? '#e50bf4' : '#b8b8b8')
+                    .style('stroke-width', a => a.source === d.id ? d.value : 1)
+                labels
+                    .style("font-size", b => b.id === d.id ? 20 : 12)
+                    .attr("y", b => b.id === d.id ? 10 : 0)
+            })
+            .on('mouseout', function (event, d) {
+                nodes.style('fill', "#69b3a2")
+                links
+                    .style('stroke', 'black')
+                    .style('stroke-width', d.value)
+                labels
+                    .style("font-size", 12 )
+            })
+
+
+        // text hover nodes
+        svg
+            .append("text")
+            .attr("text-anchor", "middle")
+            .style("fill", "#B8B8B8")
+            .style("font-size", "17px")
+            .attr("x", 50)
+            .attr("y", 10)
+            .html("PR Dependencies")
+    // })
+
+</script>
